@@ -1,7 +1,7 @@
 " ZoomWin:	Brief-like ability to zoom into/out-of a window
 " Author:	Charles Campbell
 "			original version by Ron Aaron
-" Date:		Mar 09, 2014 
+" Date:		Mar 09, 2014
 " Version:	25n	ASTRO-ONLY
 " History: see :help zoomwin-history {{{1
 " GetLatestVimScripts: 508 1 :AutoInstall: ZoomWin.vim
@@ -20,7 +20,11 @@ endif
 let s:keepcpo        = &cpo
 let g:loaded_ZoomWin = "v25n"
 if !exists("g:zoomwin_localoptlist")
- let s:localoptlist   = ["ai","ar","bh","bin","bl","bomb","bt","cfu","ci","cin","cink","cino","cinw","cms","com","cpt","diff","efm","eol","ep","et","fenc","fex","ff","flp","fo","ft","gp","imi","ims","inde","inex","indk","inf","isk","key","kmp","lisp","mps","ml","ma","mod","nf","ofu","oft","pi","qe","ro","sw","sn","si","sts","spc","spf","spl","sua","swf","smc","syn","ts","tx","tw","udf","wfh","wfw","wm"]
+  if has('nvim')
+    let s:localoptlist = ["ai","ar","bh","bin","bl","bomb","bt","cfu","ci","cin","cink","cino","cinw","cms","com","cpt","diff","efm","eol","ep","et","fenc","fex","ff","flp","fo","ft","gp","imi","ims","inde","inex","indk","inf","isk","kmp","lisp","mps","ml","ma","mod","nf","ofu","pi","qe","ro","sw","si","sts","spc","spf","spl","sua","swf","smc","syn","ts","tw","udf","wfh","wfw","wm"]
+  else
+    let s:localoptlist = ["ai","ar","bh","bin","bl","bomb","bt","cfu","ci","cin","cink","cino","cinw","cms","com","cpt","diff","efm","eol","ep","et","fenc","fex","ff","flp","fo","ft","gp","imi","ims","inde","inex","indk","inf","isk","key","kmp","lisp","mps","ml","ma","mod","nf","ofu","oft","pi","qe","ro","sw","sn","si","sts","spc","spf","spl","sua","swf","smc","syn","ts","tx","tw","udf","wfh","wfw","wm"]
+  endif
 else
  let s:localoptlist   = g:zoomwin_localoptlist
 endif
@@ -258,7 +262,7 @@ fun! ZoomWin#ZoomWin()
 
   " Re-open certain windows {{{3
   call s:ZoomWinPreserve(1)
-  
+
   " call user's optional funcref (callback) functions
   if exists("g:ZoomWin_funcref")
    if type(g:ZoomWin_funcref) == 2
